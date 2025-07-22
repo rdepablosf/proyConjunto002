@@ -26,9 +26,9 @@ public class BookService {
     }
 
     //Obtiene un registro por id
-    public Book get(long id){
+    public Book get(Long id){
         LOGGER.info("Leer un campo con id "+id);
-        return bookRepository.findById(Long.valueOf(id)).orElse(null);
+        return bookRepository.findById(id).orElse(null);
     }
 
     //POST 
@@ -47,8 +47,8 @@ public class BookService {
 
     //DELETE
     //Eliminar un registro
-    public void delete(long id){
+    public void delete(Long id){
         LOGGER.info("Se elimina un registro");
-        bookRepository.deleteById(Long.valueOf(id));
+        bookRepository.deleteById(id);
     }
 }
