@@ -10,4 +10,16 @@ public class Main {
 		SpringApplication.run(Main.class, args);
 	}
 
+	// @Bean
+	// public CommandLineRunner init(UserRepository userRepository) {
+	// 	return args -> {
+	// 		User user = new User();
+	// 		user.setName("Ricardo");
+	// 		user.setLastName("de Pablos");
+	// 		user.setEmail("rdepablos@ejemplo.com");
+	// 		user.setAddress("Santoña");
+
+	// 		userRepository.save(user);
+	// 	};
+	// }
 }
