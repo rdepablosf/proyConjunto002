@@ -29,7 +29,12 @@ public class UserService {
         LOGGER.info("Leer todos los usuarios");
         return userRepository.findAll();
     }
-    
+
+    // buscar por apellidos
+    public List<User> findByLastName(String lastName) {
+        return userRepository.findByLastName(lastName);
+    }
+
     // modificar usuario
     public User updateUser(User user) {
         LOGGER.info("Usuario creado");

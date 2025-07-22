@@ -39,6 +39,12 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    // buscar usuarios por apellidos
+    @GetMapping("/lastname/{lastName}")
+    public List<User> findByLastName(@PathVariable String lastName) {
+        return userService.findByLastName(lastName);
+    }
+
     // modificar usuario
     @PutMapping
     public User updateUser(@RequestBody User user) {
