@@ -11,6 +11,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import java.util.Optional;
 
@@ -48,6 +49,7 @@ public class BookControllerTest {
         mockMvc.perform(post("/book")
                 .contentType("application/json")
                 .content(jsonBook))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(result -> {
                     String respuesta = result.getResponse().getContentAsString();
@@ -72,9 +74,11 @@ public class BookControllerTest {
         mockMvc.perform(post("/book")
                 .contentType("application/json")
                 .content(jsonBook))
+                .andDo(print())
                 .andExpect(status().isOk());
         
        mockMvc.perform(get("/book/1"))
+                .andDo(print())
                 .andExpect(status().isOk());
                      
     }
@@ -94,6 +98,7 @@ public class BookControllerTest {
         mockMvc.perform(post("/book")
                 .contentType("application/json")
                 .content(jsonBook))
+                .andDo(print())
                 .andExpect(status().isBadRequest());                             
     }
 
@@ -112,6 +117,7 @@ public class BookControllerTest {
         mockMvc.perform(post("/book")
                 .contentType("application/json")
                 .content(jsonBook))
+                .andDo(print())
                 .andExpect(status().isOk());
 
         Book book2=new Book();
@@ -126,9 +132,11 @@ public class BookControllerTest {
         mockMvc.perform(post("/book")
                 .contentType("application/json")
                 .content(jsonBook2))
+                .andDo(print())
                 .andExpect(status().isOk());
 
         mockMvc.perform(get("/book"))
+                .andDo(print())
                 .andExpect(status().isOk());                 
     }
 
@@ -147,12 +155,14 @@ public class BookControllerTest {
                 .contentType("application/json")
                 .content(jsonBook))
                 .andExpect(status().isOk())
+                .andDo(print())
                 .andReturn();                
         //se obtiene la id del registro recien creado
         Long idResult=objectMapper.readValue(mvcResult.getResponse().getContentAsString(),Book.class).getId();
 
         mvcResult=mockMvc.perform(get("/book/"+idResult))
                 .andExpect(status().isOk())
+                .andDo(print())
                 .andReturn(); 
         
         //se sobrescribe el autor 
@@ -163,10 +173,12 @@ public class BookControllerTest {
         mockMvc.perform(put("/book")
                 .contentType("application/json")
                 .content(jsonBook))
+                .andDo(print())
                 .andExpect(status().isOk());
         //se obtiene el libro
         mvcResult=mockMvc.perform(get("/book/"+idResult))
                 .andExpect(status().isOk())
+                .andDo(print())
                 .andReturn();
         Book bookResult=objectMapper.readValue(mvcResult.getResponse().getContentAsString(),Book.class);
         
@@ -189,10 +201,12 @@ public class BookControllerTest {
                 .contentType("application/json")
                 .content(jsonBook))
                 .andExpect(status().isOk())
+                .andDo(print())
                 .andReturn();
 
         Long idResult=objectMapper.readValue(mvcResult.getResponse().getContentAsString(),Book.class).getId();
         mockMvc.perform(delete("/book/"+idResult))
+                .andDo(print())
                 .andExpect(status().isOk());
     }
 }
