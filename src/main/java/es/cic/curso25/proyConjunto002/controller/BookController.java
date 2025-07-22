@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.cic.curso25.proyConjunto002.model.Book;
+import es.cic.curso25.proyConjunto002.model.SecurityCreationException;
+import es.cic.curso25.proyConjunto002.model.SecurityModificationException;
 import es.cic.curso25.proyConjunto002.service.BookService;
 
 @RestController
@@ -43,11 +45,11 @@ public class BookController {
 
     //POST 
     //Crea un nuevo registro
-    @PostMapping
+    @PostMapping()
     public Book post(@RequestBody Book book){
         LOGGER.info("Leer todos los campos");
         if(book.getId()!=null){
-            //TODO - lanzar la excepcion personalizada con el 400 
+            throw new SecurityCreationException("Se ha intentado insertar un registro nuevo con una id que no es null");
         }
         return bookService.create(book);
     }
@@ -57,14 +59,15 @@ public class BookController {
     @PutMapping
     public void put(@RequestBody Book book){
         if(book.getId()==null){
-            //TODO - lanzar la excepcion personalizada con el 400
+            throw new SecurityModificationException("Se ha intentado actualizar un registro con una id null");
         }
+        bookService.update(book);
     }
 
     //DELETE 
     //Borrar un registro
     @DeleteMapping
     public void delte(@PathVariable long id){
-
+        bookService.delete(id);
     }
 }

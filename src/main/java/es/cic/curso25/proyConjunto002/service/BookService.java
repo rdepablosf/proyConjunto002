@@ -34,9 +34,21 @@ public class BookService {
     //POST 
     //crear un registro 
     public Book create(Book book){
-        LOGGER.info("Leer todos los campos");
+        LOGGER.info("Se crea un registro");
         return bookRepository.save(book);
     }
 
+    //PUT
+    //Modificar un registro
+    public void update(Book book){
+        LOGGER.info("Se modifica un registro");
+        bookRepository.save(book);
+    }
 
+    //DELETE
+    //Eliminar un registro
+    public void delete(long id){
+        LOGGER.info("Se elimina un registro");
+        bookRepository.deleteById(Long.valueOf(id));
+    }
 }
