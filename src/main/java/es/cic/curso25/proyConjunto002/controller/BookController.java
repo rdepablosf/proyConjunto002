@@ -40,7 +40,7 @@ public class BookController {
     @GetMapping("/{id}")
     public Book get(@PathVariable long id){
         LOGGER.info("Leer todos los campos");
-        return bookService.get(id);
+        return bookService.get(Long.valueOf(id));
     }
 
     //POST 
@@ -66,8 +66,8 @@ public class BookController {
 
     //DELETE 
     //Borrar un registro
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void delte(@PathVariable long id){
-        bookService.delete(id);
+        bookService.delete(Long.valueOf(id));
     }
 }
