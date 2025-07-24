@@ -48,7 +48,7 @@ public class BookController {
     @PostMapping()
     public Book post(@RequestBody Book book){
         LOGGER.info("Leer todos los campos");
-        if(book.getId()!=null){
+        if(book.getIdBook()!=null){
             throw new SecurityCreationException("Se ha intentado insertar un registro nuevo con una id que no es null");
         }
         return bookService.create(book);
@@ -58,7 +58,7 @@ public class BookController {
     //Modifica un registro 
     @PutMapping
     public void put(@RequestBody Book book){
-        if(book.getId()==null){
+        if(book.getIdBook()==null){
             throw new SecurityModificationException("Se ha intentado actualizar un registro con una id null");
         }
         bookService.update(book);

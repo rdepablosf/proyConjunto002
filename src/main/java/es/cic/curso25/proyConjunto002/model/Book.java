@@ -1,10 +1,13 @@
 package es.cic.curso25.proyConjunto002.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Book {
@@ -23,22 +26,26 @@ public class Book {
     private String genre;
     @Column(name="price")
     private double price;
+    @OneToOne(cascade = CascadeType.PERSIST,orphanRemoval = false)
+    @JoinColumn(name="id_publisher")
+    private BookPublisher bookPublisher;
 
     public Book() {
     }
-    public Book(Long idBook, String isbn, String title, String autor, String genre, double price) {
+    public Book(Long idBook, String isbn, String title, String autor, String genre, double price,BookPublisher bookPublisher) {
         this.idBook = idBook;
         this.isbn = isbn;
         this.title = title;
         this.autor = autor;
         this.genre = genre;
         this.price = price;
+        this.bookPublisher=bookPublisher;
     }
     
-    public Long getId() {
+    public Long getIdBook() {
         return idBook;
     }
-    public void setId(Long idBook) {
+    public void setIdBook(Long idBook) {
         this.idBook = idBook;
     }
     public String getIsbn() {
@@ -72,6 +79,12 @@ public class Book {
         this.price = price;
     }
     
+    public BookPublisher getBookPublisher() {
+        return bookPublisher;
+    }
+    public void setBookPublisher(BookPublisher bookPublisher) {
+        this.bookPublisher = bookPublisher;
+    }
     @Override
     public String toString() {
         return "Book [idBook=" + idBook + ", isbn=" + isbn + ", title=" + title + ", autor=" + autor + ", genre=" + genre

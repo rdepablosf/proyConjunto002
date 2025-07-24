@@ -50,7 +50,7 @@ public class BookUserIntegrationTest {
                     String respuesta = result.getResponse().getContentAsString();
                     Book registroCreado=objectMapper.readValue(respuesta, Book.class);
                     
-                    Optional<Book> registroCreadoRealmente=bookRepository.findById(registroCreado.getId());
+                    Optional<Book> registroCreadoRealmente=bookRepository.findById(registroCreado.getIdBook());
                     assertTrue(registroCreadoRealmente.isPresent());
                 });
     }

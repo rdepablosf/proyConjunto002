@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.cic.curso25.proyConjunto002.model.Book;
+import es.cic.curso25.proyConjunto002.model.BookPublisher;
+import es.cic.curso25.proyConjunto002.repository.BookPublisherRepository;
 import es.cic.curso25.proyConjunto002.repository.BookRepository;
 
 @Service
@@ -17,7 +19,8 @@ public class BookService {
 
     @Autowired
     private BookRepository bookRepository;
-
+    @Autowired
+    private BookPublisherRepository bookPublisherRepository;
     //GET 
     //Obtiene todos los registros 
     public List<Book> get(){

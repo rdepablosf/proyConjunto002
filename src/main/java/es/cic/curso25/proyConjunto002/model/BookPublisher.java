@@ -5,27 +5,23 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 
 @Entity
-public class Publisher {
+public class BookPublisher {
 
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_publisher")
     private Long id;
-    @OneToOne(mappedBy = "idBook")
-    private Book book;
     private String name;
     private String phone;
     private String email;
     
-    public Publisher() {
+    public BookPublisher() {
     }
 
-    public Publisher(Long id, Book book, String name, String phone, String email) {
+    public BookPublisher(Long id, String name, String phone, String email) {
         this.id = id;
-        this.book = book;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -37,14 +33,6 @@ public class Publisher {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
     }
 
     public String getName() {
@@ -87,7 +75,7 @@ public class Publisher {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Publisher other = (Publisher) obj;
+        BookPublisher other = (BookPublisher) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -98,8 +86,9 @@ public class Publisher {
 
     @Override
     public String toString() {
-        return "Publisher [id=" + id + ", book=" + book + ", name=" + name + ", phone=" + phone + ", email=" + email
-                + "]";
+        return "BookPublisher [id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + "]";
     }
+
+    
     
 }

@@ -78,13 +78,13 @@ public class BookServiceTest {
         book.setTitle("El misterio de alguno");
        
         Book bookComp=bookService.create(book);
-        Book bookMirror=bookService.get(bookComp.getId());
+        Book bookMirror=bookService.get(bookComp.getIdBook());
 
         bookMirror.setAutor("ninguno");
 
         bookService.update(bookMirror);
 
-        bookComp=bookService.get(bookMirror.getId());
+        bookComp=bookService.get(bookMirror.getIdBook());
 
         assertEquals(bookComp, bookMirror);
     }
@@ -100,9 +100,9 @@ public class BookServiceTest {
 
         Book bookComp=bookService.create(book);
 
-        bookService.delete(bookComp.getId());
+        bookService.delete(bookComp.getIdBook());
 
-        Optional<Book> bookOp=bookRepository.findById(bookComp.getId());
+        Optional<Book> bookOp=bookRepository.findById(bookComp.getIdBook());
         assertFalse(bookOp.isPresent());
     }
 }
