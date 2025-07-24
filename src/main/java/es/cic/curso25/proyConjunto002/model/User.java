@@ -1,10 +1,14 @@
 package es.cic.curso25.proyConjunto002.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +30,10 @@ public class User {
 
     @Column(name = "address", nullable = false)
     private String address;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private AddressDetails addressDetails;
 
     public User() {
     }
@@ -75,6 +83,14 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public AddressDetails getAddressDetails() {
+        return addressDetails;
+    }
+
+    public void setAddressDetails(AddressDetails addressDetails) {
+        this.addressDetails = addressDetails;
     }
 
     @Override
