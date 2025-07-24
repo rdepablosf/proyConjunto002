@@ -12,7 +12,7 @@ public class Book {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_book")
-    private Long id;
+    private Long idBook;
     @Column(name="isbn",nullable = false, unique=true)
     private String isbn;
     @Column(name="title",length = 50)
@@ -23,11 +23,11 @@ public class Book {
     private String genre;
     @Column(name="price")
     private double price;
-    
+
     public Book() {
     }
-    public Book(Long id, String isbn, String title, String autor, String genre, double price) {
-        this.id = id;
+    public Book(Long idBook, String isbn, String title, String autor, String genre, double price) {
+        this.idBook = idBook;
         this.isbn = isbn;
         this.title = title;
         this.autor = autor;
@@ -36,10 +36,10 @@ public class Book {
     }
     
     public Long getId() {
-        return id;
+        return idBook;
     }
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long idBook) {
+        this.idBook = idBook;
     }
     public String getIsbn() {
         return isbn;
@@ -74,14 +74,14 @@ public class Book {
     
     @Override
     public String toString() {
-        return "Book [id=" + id + ", isbn=" + isbn + ", title=" + title + ", autor=" + autor + ", genre=" + genre
+        return "Book [idBook=" + idBook + ", isbn=" + isbn + ", title=" + title + ", autor=" + autor + ", genre=" + genre
                 + ", price=" + price + "]";
     }
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((idBook == null) ? 0 : idBook.hashCode());
         return result;
     }
     @Override
@@ -93,10 +93,10 @@ public class Book {
         if (getClass() != obj.getClass())
             return false;
         Book other = (Book) obj;
-        if (id == null) {
-            if (other.id != null)
+        if (idBook == null) {
+            if (other.idBook != null)
                 return false;
-        } else if (!id.equals(other.id))
+        } else if (!idBook.equals(other.idBook))
             return false;
         return true;
     }
