@@ -32,7 +32,7 @@ public class User {
     private String address;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private AddressDetails addressDetails;
 
     public User() {

@@ -1,7 +1,12 @@
 package es.cic.curso25.proyConjunto002;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import es.cic.curso25.proyConjunto002.model.User;
+import es.cic.curso25.proyConjunto002.repository.UserRepository;
 
 @SpringBootApplication
 public class Main {
